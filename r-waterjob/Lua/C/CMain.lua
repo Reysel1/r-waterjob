@@ -8,10 +8,10 @@ CreateThread(function()
         for k, v in pairs(Config.Points.Recoger) do
             if #(ppos - v) < 3 then
                 DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.2, 0.2, 0, 0, 0, 350, 0, 0, 0, 12, 0, 0, 0)
-                Help("G - Recoger", v)
+                Help(Lang:t("helptext.pickup"), v)
                 if IsControlJustReleased(0, 58) then
                     if QBCore.Functions.HasItem('botellavacia') then 
-                         QBCore.Functions.Progressbar('name_here', 'Interactuando...', 5000, false, false, { -- Name | Label | Time | useWhileDead | canCancel
+                         QBCore.Functions.Progressbar('int',  Lang:t("proggress.int"), 5000, false, false, { -- Name | Label | Time | useWhileDead | canCancel
                              disableMovement = true,
                              disableCarMovement = true,
                              disableMouse = false,
@@ -21,12 +21,13 @@ CreateThread(function()
                             anim = 'base',
                             flags = 16,
                          }, {}, {}, function()  
-                            QBCore.Functions.Notify('Llenaste una botella de agua sucia.')
+                            
+                            QBCore.Functions.Notify(Lang:t("success.fillbottle"))
                             TriggerServerEvent('r-waterjob:delteitem:bottle')
                             TriggerServerEvent('r-waterjob:additem:bottle')
                          end)
                     else 
-                        QBCore.Functions.Notify('No tienes botella Vacía.')
+                        QBCore.Functions.Notify(Lang:t("error.donthavebottle"))
                     end 
                 end
             end
@@ -44,17 +45,17 @@ CreateThread(function()
             _s = 1
             if #(ppos - v) < 3 then
                 DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.2, 0.2, 0, 0, 0, 350, 0, 0, 0, 12, 0, 0, 0)
-                Help("G - Hablar con Paco", v)
+                Help(Lang:t("helptext.spkpacohelptext"), v)
                 if IsControlJustReleased(0, 58) then
-                          QBCore.Functions.Progressbar('name_here', 'Hablando con Paco...', 5000, false, false, { -- Name | Label | Time | useWhileDead | canCancel
+                          QBCore.Functions.Progressbar('spkpaco', Lang:t("proggress.spkpacopg"), 5000, false, false, { -- Name | Label | Time | useWhileDead | canCancel
                           disableMovement = true,
                           disableCarMovement = true,
                           disableMouse = false,
                           disableCombat = true,
                       }, {
                       }, {}, {}, function()  
-                          SetNewWaypoint(dest.x, dest.y, dest.z)
-                          QBCore.Functions.Notify('No tengo esa cantidad, te deje una ubicacion que tiene la cantidad que necesitas y mas.')
+                          SetNewWaypoint(dest.x, dest.y, dest.z) 
+                          QBCore.Functions.Notify(Lang:t("error.donthaveammount"))
                       end) 
                     end
                 end
@@ -73,10 +74,10 @@ CreateThread(function()
             _s = 1
             if #(ppos - v) < 3 then
                 DrawMarker(2, v.x, v.y, v.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.25, 0.2, 0.2, 0, 0, 0, 350, 0, 0, 0, 12, 0, 0, 0)
-                Help("G - Hablar con Reysel", v)
+                Help(Lang:t("helptext.spkreyselhelptext"), v)
                 if IsControlJustReleased(0, 58) then
                     if QBCore.Functions.HasItem('botellaconaguasucia', 15) then 
-                        QBCore.Functions.Progressbar('name_here', 'Hablando con Reysel...', 5000, false, false, { -- Name | Label | Time | useWhileDead | canCancel
+                        QBCore.Functions.Progressbar('reysel',  Lang:t("proggress.spkreyselpg"), 5000, false, false, { -- Name | Label | Time | useWhileDead | canCancel
                             disableMovement = true,
                             disableCarMovement = true,
                             disableMouse = false,
@@ -87,7 +88,7 @@ CreateThread(function()
                             TriggerServerEvent('r-waterjob:additem:water')
                         end)
                     else 
-                        QBCore.Functions.Notify('No tienes nada que me interese. | Necesito minimo 15')
+                        QBCore.Functions.Notify(Lang:t("error.donthaveint"))
                   end
                 end
             end
