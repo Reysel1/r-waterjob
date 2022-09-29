@@ -1,0 +1,25 @@
+local QBCore = exports['qb-core']:GetCoreObject()
+RegisterServerEvent('r-waterjob:additem:bottle')
+AddEventHandler('r-waterjob:additem:bottle', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    Player.Functions.AddItem(Config.ItemQueDa, Config.CantidadQueDa)
+end)
+RegisterServerEvent('r-waterjob:delteitem:bottle')
+AddEventHandler('r-waterjob:delteitem:bottle', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    Player.Functions.RemoveItem(Config.ItemQueQuita, Config.CantidadQueQuita)
+end)
+RegisterServerEvent('r-waterjob:additem:water')
+AddEventHandler('r-waterjob:additem:water', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+        Player.Functions.AddItem(Config.ItemQueDaServer, Config.CantidadQueDaServer)
+end)
+RegisterServerEvent('r-waterjob:delteitem:water')
+AddEventHandler('r-waterjob:delteitem:water', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    Player.Functions.RemoveItem(Config.ItemQueQuitaServ, Config.CantidadQueQuitaServer)
+end)
